@@ -3,10 +3,13 @@ interface Props {
     label : string, 
     name : string,
     type : string,
-    placeholder : string
+    placeholder : string,
+    value : string,
+    onChange : (e : React.ChangeEvent<HTMLInputElement>) => void,
+    error ?: string
 }
 
-const AuthInputs : React.FC<Props> = ({ label , name , type , placeholder} : Props) => {
+const AuthInputs : React.FC<Props> = ({ label , name , type , placeholder , value , onChange , error} : Props) => {
 
 
   return (
@@ -16,11 +19,14 @@ const AuthInputs : React.FC<Props> = ({ label , name , type , placeholder} : Pro
             <input
             id={name} 
             name={name}
+            value={value}
+            onChange={onChange}
               type={type}
               placeholder={placeholder}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
               required
             />
+            {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
         </div>
   )
 }
